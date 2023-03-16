@@ -10,9 +10,11 @@
 
 ### 範例：
 輸入：
+
 ![](https://i.imgur.com/mJOK4rn.png)
 
 輸出：
+
 ![](https://i.imgur.com/GMsdU5n.png)
 
 ### 解答：
