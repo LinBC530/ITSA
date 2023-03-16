@@ -16,7 +16,7 @@
 ![](https://i.imgur.com/GMsdU5n.png)
 
 ### 解答：
-```c++=
+```c++
 #include <iostream>
 using namespace std;
 
