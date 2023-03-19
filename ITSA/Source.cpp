@@ -1,22 +1,44 @@
 #include <iostream>
 using namespace std;
 
-int RC(int n)
+class Card
 {
-	if (n > 1)
+private:
+	char type = NULL;
+	int num = NULL;
+public:
+	void setCard(char type = ' ', int num = 0)
 	{
-		return RC(n - 1) + RC(n / 2);
+		this->type = type;
+		this->num = num;
 	}
-	else if (n == 0 or n == 1)
+	bool hasdata()
 	{
-		return n + 1;
+		if (type != NULL && num != NULL)
+			return true;
+		else
+			return false;
 	}
+};
+void quick_sort(Card)
+{
+
 }
 
 int main()
 {
-	int n;
+	int n, num;
+	char type;
 	cin >> n;
-	cout << RC(n) << endl;
-	return 0;
+	Card** card = new Card * [n];
+	for (int i = 0; i < n; i++)
+	{
+		card[i] = new Card[10];
+		for (int j = 0; j < 10; j++)
+		{
+			cin >> type >> num;
+			card[i][j].setCard(type, num);
+		}
+	}
+	
 }
