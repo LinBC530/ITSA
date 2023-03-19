@@ -8,9 +8,10 @@ int main()
     if (input <= 1) {
         cout << "NO" << endl;
     }
-    for (int i = 2; i * i <= input; i++) {
+    for (int i = 2;i * i <= input; i++) {
         if (input % i == 0) {
             cout << "NO" << endl;
+            exit(0);
         }
     }
     cout << "YES" << endl;
