@@ -66,7 +66,7 @@ public:
 		}
 		else
 		{
-			if (icon[type] <= icon[card.type])
+			if (icon[type] < icon[card.type])
 				return true;
 			return false;
 		}
@@ -91,10 +91,11 @@ void quick_sort(Card* &cards, int start ,int end)
 			cards[R] = temp;
 		}
 	}
-	cards[start] = cards[L];
-	cards[L] = key;
-	quick_sort(cards, start, R - 1);
-	quick_sort(cards, R + 1, end);
+
+	//cards[start] = cards[L];
+	//cards[L] = key;
+	//quick_sort(cards, start, R - 1);
+	//quick_sort(cards, R + 1, end);
 }
 ostream& operator<< (ostream& output, Card& card)
 {
@@ -122,12 +123,16 @@ int main()
 			}
 		}
 	}
+	cout << endl;
 	for(int i=0;i<n;i++)
 		for (int j = 0; j < 10; j++)
 		{
 			if (card[i][j+1].hasdata())
 				cout << card[i][j] << " ";
 			else
+			{
 				cout << card[i][j] << endl;
+				break;
+			}
 		}
 }
