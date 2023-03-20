@@ -55,47 +55,58 @@ public:
 			return false;
 		}
 	}
-	bool operator<= (Card& card)
+	bool operator>= (Card& card)
 	{
 		map<char, int> icon{ {'S',4},{'H',3} ,{'D',2} ,{'C',1} };
 		if (type == card.getType())
 		{
-			if (num <= card.getNum())
+			if (num >= card.getNum())
 				return true;
 			return false;
 		}
 		else
 		{
-			if (icon[type] < icon[card.type])
+			if (icon[type] > icon[card.type])
 				return true;
 			return false;
 		}
 	}
 };
+
+ostream& operator<< (ostream& output, Card& card);
 void quick_sort(Card* &cards, int start ,int end)
 {
 	if (start >= end)
 		return;
-	int L = start;
+	int L = start+1;
 	int R = end;
-	Card key = cards[L], temp;
+	int key = start;
+	Card temp;
 	while (L != R) {
-		while ((cards[L] > key) && L < R)
-			L++;
-		while ((cards[R] <= key) && R > L)
+		while ((cards[R] < cards[key]) && L < R)
 			R--;
+		while ((cards[L] > cards[key]) && L < R)
+			L++;
 		if (L < R)
+			swap(cards[L], cards[R]);
+	}
+	
+
+	cout << endl;
+	for (int j = 0; j < 10; j++)
+	{
+		if (cards[j + 1].hasdata())
+			cout << cards[j] << " ";
+		else
 		{
-			temp = cards[L];
-			cards[L] = cards[R];
-			cards[R] = temp;
+			cout << cards[j] << endl;
+			break;
 		}
 	}
 
-	//cards[start] = cards[L];
-	//cards[L] = key;
-	//quick_sort(cards, start, R - 1);
-	//quick_sort(cards, R + 1, end);
+	key = L;
+	quick_sort(cards, start, key - 1);
+	quick_sort(cards, key + 1, end);
 }
 ostream& operator<< (ostream& output, Card& card)
 {
