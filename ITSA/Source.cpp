@@ -18,96 +18,50 @@ public:
 	}
 	bool hasdata()
 	{
-		if (type != NULL && num != NULL)
-			return true;
-		else
-			return false;
+		return type != NULL && num != NULL;
 	}
 	bool operator< (Card &card)
 	{
 		map<char, int> icon{ {'S',4},{'H',3} ,{'D',2} ,{'C',1} };
 		if (type == card.getType())
-		{
-			if (num < card.getNum())
-				return true;
-			return false;
-		}
-		else
-		{
-			if (icon[type] < icon[card.type])
-				return true;
-			return false;
-		}
+			return num < card.getNum();
+		return icon[type] < icon[card.type];
 	}
 	bool operator> (Card &card)
 	{
 		map<char, int> icon{ {'S',4},{'H',3} ,{'D',2} ,{'C',1} };
 		if (type == card.getType())
-		{
-			if (num > card.getNum())
-				return true;
-			return false;
-		}
-		else
-		{
-			if (icon[type] > icon[card.type])
-				return true;
-			return false;
-		}
+			return num > card.getNum();
+		return icon[type] > icon[card.type];
 	}
 	bool operator>= (Card& card)
 	{
 		map<char, int> icon{ {'S',4},{'H',3} ,{'D',2} ,{'C',1} };
 		if (type == card.getType())
-		{
-			if (num >= card.getNum())
-				return true;
-			return false;
-		}
-		else
-		{
-			if (icon[type] > icon[card.type])
-				return true;
-			return false;
-		}
+			return num >= card.getNum();
+		return icon[type] > icon[card.type];
 	}
 };
-
-ostream& operator<< (ostream& output, Card& card);
-void quick_sort(Card* &cards, int start ,int end)
+void quick_sort(Card* cards, int left, int right)
 {
-	if (start >= end)
+	if (left >= right)
 		return;
-	int L = start+1;
-	int R = end;
-	int key = start;
-	Card temp;
-	while (L != R) {
-		while ((cards[R] < cards[key]) && L < R)
-			R--;
-		while ((cards[L] > cards[key]) && L < R)
-			L++;
-		if (L < R)
-			swap(cards[L], cards[R]);
-	}
-	
 
-	cout << endl;
-	for (int j = 0; j < 10; j++)
+	int i = left - 1, j = right + 1;
+	Card pivot = cards[(left + right) / 2];
+
+	while (i < j)
 	{
-		if (cards[j + 1].hasdata())
-			cout << cards[j] << " ";
-		else
-		{
-			cout << cards[j] << endl;
-			break;
-		}
+		do i++; while (cards[i] > pivot);
+		do j--; while (cards[j] < pivot);
+		if (i < j) swap(cards[i], cards[j]);
 	}
 
-	key = L;
-	quick_sort(cards, start, key - 1);
-	quick_sort(cards, key + 1, end);
+	quick_sort(cards, left, j);
+	quick_sort(cards, j + 1, right);
 }
+
+
 ostream& operator<< (ostream& output, Card& card)
 {
 	output << card.getType() << card.getNum();
