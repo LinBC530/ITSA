@@ -13,7 +13,7 @@
 ![](https://i.imgur.com/tBJGVXL.png)
 
 ### 解答：
-```cpp=
+```cpp
 #include <iostream>
 using namespace std;
 
