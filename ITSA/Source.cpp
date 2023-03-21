@@ -34,13 +34,6 @@ public:
 			return num > card.getNum();
 		return icon[type] > icon[card.type];
 	}
-	bool operator>= (Card& card)
-	{
-		map<char, int> icon{ {'S',4},{'H',3} ,{'D',2} ,{'C',1} };
-		if (type == card.getType())
-			return num >= card.getNum();
-		return icon[type] > icon[card.type];
-	}
 };
 void quick_sort(Card* cards, int left, int right)
 {
@@ -60,14 +53,11 @@ void quick_sort(Card* cards, int left, int right)
 	quick_sort(cards, left, j);
 	quick_sort(cards, j + 1, right);
 }
-
-
 ostream& operator<< (ostream& output, Card& card)
 {
 	output << card.getType() << card.getNum();
 	return output;
 }
-
 int main()
 {
 	int n, num;
@@ -76,8 +66,8 @@ int main()
 	Card** card = new Card * [n];
 	for (int i = 0; i < n; i++)
 	{
-		card[i] = new Card[10];
-		for (int j = 0; j < 10; j++)
+		card[i] = new Card[52];
+		for (int j = 0; j < 52; j++)
 		{
 			cin >> type >> num;
 			card[i][j].setCard(type, num);
@@ -88,16 +78,18 @@ int main()
 			}
 		}
 	}
-	cout << endl;
 	for(int i=0;i<n;i++)
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < 52; j++)
 		{
 			if (card[i][j+1].hasdata())
 				cout << card[i][j] << " ";
 			else
 			{
+				if(i==n-1){ cout << card[i][j]; delete[] card[i]; break;}
 				cout << card[i][j] << endl;
+				delete[] card[i];
 				break;
 			}
 		}
+	delete[] card;
 }
