@@ -12,7 +12,7 @@
 
 ![](https://i.imgur.com/Rr7WunO.png)
 
-### 解答：
+### 作法(非解答)：
 ```cpp
 #include <iostream>
 #include <string>
