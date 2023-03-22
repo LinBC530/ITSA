@@ -11,7 +11,7 @@ private:
 public:
 	char getType() { return type; }
 	int getNum() { return num; }
-	void setCard(char type = ' ', int num = 0)
+	void setCard(char type, int num)
 	{
 		this->type = type;
 		this->num = num;
@@ -85,7 +85,6 @@ int main()
 				cout << card[i][j] << " ";
 			else
 			{
-				if(i==n-1){ cout << card[i][j]; delete[] card[i]; break;}
 				cout << card[i][j] << endl;
 				delete[] card[i];
 				break;
