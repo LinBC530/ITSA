@@ -12,7 +12,7 @@
 
 ![](https://i.imgur.com/Rr7WunO.png)
 
-### 作法(非解答)：
+### 作法(輸出正常，但無法通過ITSA測試)：
 ```cpp
 #include <iostream>
 #include <map>
