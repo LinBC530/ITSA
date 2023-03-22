@@ -1,19 +1,18 @@
 #include <iostream>
 using namespace std;
-
+bool isPrime(int p) {
+    if (p <= 1) return false;
+    for (int i = 2; i < p; i++) {
+        if (p % i == 0) return false;
+    }
+    return true;
+}
 int main()
 {
-	int input;
-	cin >> input;
-    if (input <= 1) {
+    int n;
+    cin >> n;
+    if (isPrime(n))
+        cout << "YES" << endl;
+    else
         cout << "NO" << endl;
-    }
-    for (int i = 2;i * i <= input; i++) {
-        if (input % i == 0) {
-            cout << "NO" << endl;
-            exit(0);
-        }
-    }
-    cout << "YES" << endl;
-	return 0;
 }
